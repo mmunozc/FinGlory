@@ -1,0 +1,28 @@
+{% extends "home.html" %}
+
+{% block content %}
+<form action="">
+
+
+<div class="input-group">
+       <label for="fecha_inicial" class="form-label">Fecha Inicial</label>
+       <input type="date" aria-label="Fecha Inicial" class="form-control" name="fecha_inicial">
+</div>
+
+<div class="input-group">
+       <label for="fecha_final" class="form-label">
+              Fecha Final
+       </label>
+       <input type="date" aria-label="Fecha Final" class="form-control" name="fecha_final">
+</div>
+
+<button type="submit" class="btn btn-primary">Filtrar</button>
+
+</form>
+<div id="container_data"></div>
+
+
+<script>
+       Highcharts.chart('container_data', {{category_wise_pie_data|safe }});
+</script>
+{% endblock content %}

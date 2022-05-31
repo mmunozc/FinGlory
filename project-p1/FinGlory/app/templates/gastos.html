@@ -1,0 +1,54 @@
+{% extends "home.html" %}
+
+{% block content %}
+
+<div class="barraBusqueda">
+	<form action="">
+		<div class="mb-3">
+			<label for="serchGasto" class="form-label">
+				Buscar Gasto:
+			</label>
+			<input type="text" class="form-control" name="serchGasto" placeholder="Nombre"/>
+		</div>
+	</form>
+</div>
+
+<div class="tabla">
+	<table class="table table-striped" id="table-gastos">
+		<thead>
+			<tr>
+				<td>#</td>
+				<td>Categoria</td>
+				<td>Recurrencia</td>
+				<td>Nombre</td>
+				<td>Fecha</td>
+				<td>Cantidad</td>
+				<td>Factura</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% if gastos %}
+			{% for gasto in gastos %}
+			<tr>
+				<td>{{gasto.id}}</td>
+				<td>{{gasto.categoria}}</td>
+				<td>{{gasto.recurrencia}}</td>
+				<td>{{gasto.nombre}}</td>
+				<td>{{gasto.fecha}}</td>
+				<td>{{gasto.cantidad}}</td>
+				<td>{{gasto.factura}}</td>
+				<td><a class = "btn btn-warning" href = "{% url "gastos/actualizarGastos" pk=gasto.id %}" > Editar </a></td>
+				<td><a class = "btn btn-danger" href = "{% url "gastos/eliminarGastos" pk=gasto.id %}" > Eliminar </a></td>
+			</tr>
+			{%endfor%}
+			{%endif%}
+		</tbody>
+	</table>
+</div>
+
+<div class="">
+    <a href="{% url 'registrarGastos' %}">
+		<button type="button" class="btn btn-primary"><span><span>Registrar Gastos</span></span></button>
+    </a>
+</div>
+{%endblock%}

@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% load crispy_forms_tags %}
+{% block nav %}
+{% endblock %} 
+{% block content %}
+
+<div class="registroInicio">
+    <div class="content-section col-md-8 col-md-offset-2">
+        <form class="form-signin"  method="post" action="">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                {{ form|crispy}}
+            </fieldset>
+
+            <button type="submit" id="submit">Sing Up</button>
+            
+            <button class="btn btn-outline-info" type="submit"><span class="glyphicon glyphicon-check"></span> &nbsp;
+                sign up</button>
+
+            <br />
+            <sub><a href="/" style="text-decoration: none; cursor:pointer;">Already have an
+                    account?</a></sub>
+        </form>
+    </div>
+</div>
+{% endblock %}

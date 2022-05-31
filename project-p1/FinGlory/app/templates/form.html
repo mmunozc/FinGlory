@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+
+<div class="forms">
+	<form method="post" action="">
+		{% csrf_token %}
+
+		
+		<div class="modal-header">
+			<h5 class="modal-title">Registrar {{nombre_modelo}}</h5>
+		</div>
+	
+		<div class="modal-body">
+			{% for field in form %}
+				{% if field != 'factura' or field != 'categoria' %}
+				<div class="form-group{% if field.errors %} invalid{% endif %}">
+					<label for="{{ field.id_for_label }}">{{ field.label }}</label>
+					{{ field }}
+					{% for error in field.errors %}
+					<p class="help-block">{{ error }}</p>
+					{% endfor %}
+				</div>
+				{% endif %}
+			{% endfor %}
+		</div>
+	
+		<div class="modal-footer">
+			<input type="submit" name="crear" value="Registrar" class="btn btn-primary">
+		</div>
+	
+	</form>
+</div>
+
+
+{% endblock %}

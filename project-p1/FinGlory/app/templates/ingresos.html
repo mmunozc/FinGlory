@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="barraBusqueda">
+	<form action="">
+		<div class="mb-3">
+			<label for="serchIngreso" class="form-label">
+				Buscar Ingreso:
+			</label>
+			<input type="text" class="form-control" name="serchIngreso" placeholder="Nombre"/>
+		</div>
+	</form>
+</div>
+
+<div class="tabla">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<td>#</td>
+				<td>Recurrencia</td>
+				<td>Nombre</td>
+				<td>Fecha</td>
+				<td>Cantidad</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% if ingresos %}
+			{% for ingreso in ingresos %}
+			<tr>
+				<td>{{ingreso.id}}</td>
+				<td>{{ingreso.recurrencia}}</td>
+				<td>{{ingreso.nombre}}</td>
+				<td>{{ingreso.fecha}}</td>
+				<td>{{ingreso.cantidad}}</td>
+				<td><a class = "btn btn-warning" href = "{% url "ingresos/actualizarIngresos" pk=ingreso.id %}" > Editar </a></td>
+				<td><a class = "btn btn-danger" href = "{% url "ingresos/eliminarIngresos" pk=ingreso.id %}" > Eliminar </a></td>
+			</tr>
+			{%endfor%}
+			{%endif%}
+		</tbody>
+	</table>
+</div>
+
+
+<div class="">
+    <a href="{% url 'registrarIngresos' %}">
+		<button type="button" class="btn btn-primary"><span><span>Registrar Ingresos</span></span></button>
+    </a>
+</div>
+{% endblock %}
